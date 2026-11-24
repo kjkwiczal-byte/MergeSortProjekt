@@ -1,11 +1,28 @@
+/**
+ * @file MergeSort.h
+ * @brief Definicja szablonu klasy MergeSort realizującej sortowanie przez scalanie.
+ */
+
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
 #include <vector>
 
+/**
+ * @class MergeSort
+ * @brief Szablon klasy implementującej algorytm sortowania przez scalanie (Merge Sort).
+ * @tparam T Typ danych przechowywanych w tablicy (np. int, long int, float, double).
+ */
 template <typename T>
 class MergeSort {
 private:
+    /**
+     * @brief Scala dwie posortowane podtablice w jedną posortowaną całość.
+     * @param arr Referencja do sortowanego wektora.
+     * @param left Indeks początkowy lewej podtablicy.
+     * @param mid Indeks środkowy dzielący podtablice.
+     * @param right Indeks końcowy prawej podtablicy.
+     */
     void merge(std::vector<T>& arr, int left, int mid, int right) {
         int n1 = mid - left + 1;
         int n2 = right - mid;
@@ -44,6 +61,12 @@ private:
         }
     }
 
+    /**
+     * @brief Rekurencyjnie dzieli tablicę na mniejsze fragmenty i wywołuje ich scalanie.
+     * @param arr Referencja do sortowanego wektora.
+     * @param left Lewy indeks zakresu.
+     * @param right Prawy indeks zakresu.
+     */
     void sortRecursive(std::vector<T>& arr, int left, int right) {
         if (left >= right) return;
 
@@ -54,6 +77,11 @@ private:
     }
 
 public:
+    /**
+     * @brief Główna metoda uruchamiająca sortowanie wektora rosnąco.
+     * Bezpiecznie obsługuje tablice puste oraz jednoelementowe.
+     * @param arr Referencja do wektora do posortowania.
+     */
     void sort(std::vector<T>& arr) {
         if (arr.size() <= 1) return;
         sortRecursive(arr, 0, static_cast<int>(arr.size()) - 1);
